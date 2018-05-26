@@ -3,36 +3,43 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>GifTastic</title>
+    <title>All-Star Celebrity GifTastic</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
     
 </head>
-<body>
+    <body>
 
-    <div id="">
+        <div class="container">
+                <div class="jumbotron">
+                        <h1>All-Star Celebrity Gifs</h1>
+                </div>
+        </div>
 
-    </div>
+            <div class="row">
+                <div class="col-md-12" id="gif-buttons"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="form">
+                        <label for="user-input">Search for favorite Popstar!</label>
+                        <input type="text" id="user-input">
+                        <input id="submitBtn" type="submit" value="Submit" class="btn btn-default">
+                    </form>
+                </div>
+            </div>
 
-    <form id="popstar-form">
-        <label form="popstar-input">Add a PopStar</label>
-        <input type="text" id="popstar-input"><br>
+            <div class="row">
+                <div class="col-md-12" id="display-images"></div>
+            </div>
+        
 
-        <input id="addPopstar" type="submit" value="Submit">
-    </form>
-
-    <div id="popstar">
-
-    </div>
-
-
-    
-
-        <script src="assets/javascript/app.js"></script>
-</body>
+            <script src="assets/javascript/app.js"></script>
+    </body>
 </html>
 

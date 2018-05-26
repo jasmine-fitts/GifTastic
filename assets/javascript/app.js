@@ -1,17 +1,82 @@
-//Create an array of strings, each related to a topic
+$(document).ready(function(){
+    //Create an array of strings, each related to a topic
+    var topicArray =  ["beyonce", "rihanna", "normani", "j cole", "drake", "nicki minaj"];
+    console.log(topicArray)
 
-var topicArray =  ["beyonce", "rihanna", "normani", "pop"]
+    function displayImg(){ 
+        $("#display-images").empty();
+        var input = (this).attr("data-name");
+        var gifLimit = 10;
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + input + "&limit" + gifLimit + "&api_key=71iRTGGKGKOSTCjTz5LhEuyfUCN4shDr";
 
-//Save the array to a variable 'topics'
+        $.ajax ({
+            url: queryURL,
+            method: "GET",
+        }).done(function(response) {
+            for (var i = 0; i < gifLimit; i++ ) {
+                var displayDiv = $("<div>");
+                displayDiv.addClass("holder");
 
-//Choose a theme for the gifs
+                var image = $("<img>");
 
-//Take the topics in the array and create buttons in the HMTL
- 
-//Use a fot loop that appends a button for each string in the array
+                image.attr("src", response.data[i].images.original_still.url);
+                image.attr("data-still", response.data[i].images.original_still.url);
+                image.attr("data-animate", response.data[i].images.original.url);
+                images.attr("data-state", "still");
+                images.attr("class", "gif");
+                displayDiv.append(image);
 
-//When the user clicks on the button, the button should grad 10 non animated gif imagesfrom teh GIPHY API and place them on the page
+                var rating = response.data[i].rating;
+                console.log(response);
+                var pRating = $("<p>").text("Rating:" + rating);
+                displayDiv.append(pRating)
 
-//When the user clicks on the still images the gif should animate --- when the use clicks on the giphy image again it will stop playing
+                $("#display-images").append(displayDiv);
+            }
+        });
+    }
 
-//Display under every gif its rating (PG, G, and so on)
+    function renderButtons(){
+        $("#display-buttons").empty();
+
+        for (var l = 0; l < displayButtons.length; l++){
+            var newButton = $("<button>")
+            newButton.attr("class", "btn btn-default");
+            newButton.attr("id", "input")
+            newButton.attr("data-name", displayedButtons[l]);
+            newButton.text(displayedButtons[l]);
+            $("display-buttons").append(newButton);
+        }
+    }
+
+    function imageState() {
+        var state = $(this).attr("data-state");
+        var animateImage = $(this).attr("data-animate");
+        var stillImage = $(this).attr("data-still");
+
+        if (state == "still") {
+            $(this).attr("src", animateImage);
+            $(this).attr("data-state", "animate");
+        }
+
+        else if (state == "animate") {
+            $(this).attr("src", stillIMage);
+            $(this).attr("data-state", "still");
+        }
+    }
+
+    $("#submitBtn").on("click", function(){
+        var input = $("#user-input").val().trim();
+        form.reset();
+        displayedButtons.push(input);
+
+        renderButtons();
+
+    })
+
+    renderButtons();
+
+    $(document).on("click", "#input", displayImg);
+    $(document).on("click", ".gif", imageState);
+    
+});
