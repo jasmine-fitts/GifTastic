@@ -1,0 +1,17 @@
+body {
+    font-family: 'Kaushan Script', cursive;
+}
+
+.jumbotron { 
+    text-align: center;
+    color: red; 
+}
+
+label {
+    color: pink;
+}
+
+.btn-default {
+    color: #000;
+    font-size: medium;
+}

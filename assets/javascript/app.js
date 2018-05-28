@@ -1,82 +1,103 @@
 $(document).ready(function(){
     //Create an array of strings, each related to a topic
-    var topicArray =  ["beyonce", "rihanna", "normani", "j cole", "drake", "nicki minaj"];
-    console.log(topicArray)
+    var favCeleb =  ["beyonce", "rihanna", "normani", "j cole", "drake", "nicki minaj", "taylor swift", "kim kardashian", "lebron james", "kobe bryant", "mariah carey", "nene leaks", "barack obama", "donald trump"];
+    
 
-    function displayImg(){ 
-        $("#display-images").empty();
-        var input = (this).attr("data-name");
-        var gifLimit = 10;
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + input + "&limit" + gifLimit + "&api_key=71iRTGGKGKOSTCjTz5LhEuyfUCN4shDr";
+    //Function for dumping the JSON content for each button into the div 
 
-        $.ajax ({
-            url: queryURL,
-            method: "GET",
-        }).done(function(response) {
-            for (var i = 0; i < gifLimit; i++ ) {
-                var displayDiv = $("<div>");
-                displayDiv.addClass("holder");
 
-                var image = $("<img>");
 
-                image.attr("src", response.data[i].images.original_still.url);
-                image.attr("data-still", response.data[i].images.original_still.url);
-                image.attr("data-animate", response.data[i].images.original.url);
-                images.attr("data-state", "still");
-                images.attr("class", "gif");
-                displayDiv.append(image);
+    //Functions that captures the celebrity name in an attribute
 
-                var rating = response.data[i].rating;
-                console.log(response);
-                var pRating = $("<p>").text("Rating:" + rating);
-                displayDiv.append(pRating)
-
-                $("#display-images").append(displayDiv);
-            }
-        });
+    function celebName() {
+        var celebName = $(this).attr("data-name");
     }
 
-    function renderButtons(){
-        $("#display-buttons").empty();
+    //Function for displaying celebrity data
 
-        for (var l = 0; l < displayButtons.length; l++){
-            var newButton = $("<button>")
-            newButton.attr("class", "btn btn-default");
-            newButton.attr("id", "input")
-            newButton.attr("data-name", displayedButtons[l]);
-            newButton.text(displayedButtons[l]);
-            $("display-buttons").append(newButton);
-        }
+    function renderButtons() {
+    
+    $("#celeb-buttons").empty();
+
+    //Loops through the array of celebrities
+    for (var i = 0; i < favCeleb.length; i++) {
+        console.log(favCeleb);
+
+    //Dynamically generate a button for each celebrity in the array
+    //THis code $("<button>") is all jQuery needs to create the start and end tag (<button><button>)
+    var a = $("<button>");
+    //Add a class to the button
+    a.addClass("celeb");
+    //Add a data-attribute
+    a.attr("data-name", favCeleb[i]);
+    //Provide the intial button text
+    a.text(favCeleb[i]);
+    //Add the button to the hmtl 
+    $("#celeb-buttons").append(a);
+    }
     }
 
-    function imageState() {
-        var state = $(this).attr("data-state");
-        var animateImage = $(this).attr("data-animate");
-        var stillImage = $(this).attr("data-still");
+    //This function handles events where one button is clicked
 
-        if (state == "still") {
-            $(this).attr("src", animateImage);
-            $(this).attr("data-state", "animate");
-        }
+    $("#add-celeb").on("click", function(event) {
+    
+    //Prevents the buttons default behavor when click (which is submitting a form)
 
-        else if (state == "animate") {
-            $(this).attr("src", stillIMage);
-            $(this).attr("data-state", "still");
-        }
-    }
+    event.preventDefault();
 
-    $("#submitBtn").on("click", function(){
-        var input = $("#user-input").val().trim();
-        form.reset();
-        displayedButtons.push(input);
+    //This line grabs the input from the textbox
 
-        renderButtons();
+    var newCeleb = $("#celeb-input").val().trim();
 
-    })
+    //Adds the celebrity from the textbox to the favCeleb array
+
+    favCeleb.push(newCeleb);
+
+    //Calling renderButtons which handles the processing of the favCeleb array
+
+    renderButtons();
+    });
+
+    $(document).on("click", displayGifs);
 
     renderButtons();
 
-    $(document).on("click", "#input", displayImg);
-    $(document).on("click", ".gif", imageState);
-    
-});
+    function displayGifs() {
+        var limit = 10
+        var celebName = $(this).attr("data-name");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + celebName + "&api_key=71iRTGGKGKOSTCjTz5LhEuyfUCN4shDr" + "&limit" + limit;
+
+
+        https://api.giphy.com/v1/gifs/search?q=
+
+        $.ajax({
+            url: queryURL, 
+            method: "GET", 
+        }).then(function(response) {
+            console.log(response);
+            renderButtons()
+
+            var image = $("<img>"); 
+            image.attr("src", response.data[i].images.original_still.url);
+            image.attr("data-still", response.data[i].images.original_still.url);
+            image.attr("data-animate", response.data[i].images.original.url);
+            image.attr("data-state", "still");
+            image.attr("class", "gif");
+            $("#celebrity-gifs").append(image);
+
+            var gifRating = response.data[i].rating;
+            console.log(response);
+            var pRating = $("<p>").text("Rating" + gifRating);
+            $("#celebrity-gifs").append(gifRating);
+
+
+        })
+    }
+
+
+
+})
+
+
+
+
