@@ -1,17 +1,47 @@
 body {
-    font-family: 'Kaushan Script', cursive;
+    background: url("../images/bckgrndpic.jpg");
+    ;
 }
 
 .jumbotron { 
     text-align: center;
-    color: red; 
+    color: rgb(179, 123, 157); 
+    background-color: rgb(170, 168, 163);
+    border: 4px outset rgb(29, 124, 124);
+    font-family: 'Faster One', cursive;
+    opacity: .5;
+    padding: 20px; 
+
+
 }
 
 label {
-    color: pink;
+    color: rgb(178, 202, 202);
+    font-family: 'Contrail One', cursive;
 }
 
-.btn-default {
-    color: #000;
-    font-size: medium;
+.btn-light{
+    background-color: teal;
+    border:  groove;
+    font-family: 'Sigmar One', cursive;
+    opacity: .4;  
+    padding: 15px; 
+   
 }
+
+.btn-light:hover { 
+    background-color: rgb(15, 54, 54);
+}
+
+.btn-submit {
+    border: groove;
+    padding: 10px;
+    font-family: 'Sigmar One', cursive;
+    background-color: rgb(128, 105, 119);
+    border-radius: 4px;
+}
+.btn-submit:hover {
+    background-color: teal;
+    opacity: .4;
+}
+    

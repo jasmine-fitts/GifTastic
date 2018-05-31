@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
   <head>
 
     <title>Favorite Celebrity Gifs</title>
@@ -9,53 +9,59 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Your Favorite Celebrities</title>
 	
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 
-			
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Sigmar+One" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Contrail+One|Faster+One|Sigmar+One" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
+
+
+
+    
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	
   </head>
 
   <body>
-    <div class="container">
-    	
     
-	    <!-- Nav Area with Title 100% -->
-	    <div class="row">
-	    	<div class="col-md-12" id="header">
-	    		<h3 id="title">Your Favorite Celebrities</h3>
-	    	</div>
-	    </div>
-	    
-		<!-- Button Area 100% -->
+    <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Your Favorite Celebrities</h1>
+            </div>
+    </div>
+	
+    <div class="container">
 		<div class="row">
 			<div class="col-md-12" id="celeb-buttons"></div>
 		</div>
 
-		<!-- Gif Area 9 cols -->
-		<div class="row">
-			<div class="col-md-9" id="celeb-gifs"></div>
-			
-		<!-- Input Area 3 cols -->		
-			<div class="col-md-3">
-				<form id="celeb-form">
-                      <label for="celeb-input">Your Fav Celeb</label>
-                      <input type="text" id="celeb-input"><br>
-				    <button type="submit" class="btn submit" data="submitBtn">Add a Celeb</button>
-				</form>
-			</div>
-		</div>	
-		
-
-
-	</div>
-		
-		
-	
-	<script src="https://code.jquery.com/jquery.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script src="assets/javascript/app.js"></script>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9" id="celeb-gifs"></div>
+        
+                <div class="col-md-3">
+                    <form id="celeb-form">
+                        <label for="celeb-input">Your Fav Celeb</label>
+                        <input type="text" id="celeb-input"><br>
+                        <button type="submit" class="btn-submit" data="submitBtn">Add a Celeb</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/javascript/app.js"></script>
   </body>
-
 </html>

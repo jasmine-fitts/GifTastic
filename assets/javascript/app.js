@@ -1,15 +1,14 @@
 //Create an array of strings related to a topic
-var favCeleb = ["beyonce", "rihanna", "tiffany haddish", "j cole", "drake", "nicki minaj", "russell westbrook", "will ferrell", "lebron james", "steve carell", "mariah carey", "nene leaks", "barack obama", "donald trump", "jonah hill", "rupaul"];
+var favCeleb = ["beyonce", "rihanna", "tiffany haddish", "j cole", "drake", "nicki minaj", "will ferrell", "lebron james", "steve carell", "mariah carey", "nene leaks", "barack obama", "donald trump", "jonah hill", "rupaul"];
 
 console.log(favCeleb)
 
 var button;
-var newCeleb = ""; // new topic that will be added via the input field 
+var newCeleb = ""; // new topic that will be added from the input field
 
 // function to create new buttons from the favCeleb array
 function renderButtons(){
-	// the previous div elements are emptied 
-	 $("#celeb-buttons").empty();
+	
 	// loops through the array and creates buttons
 	for(i = 0; i < favCeleb.length; i++) {
 		button = $("<button type=" + "button" + ">" + favCeleb[i] + "</button>").addClass("btn btn-light").attr("data",favCeleb[i]);
@@ -18,7 +17,7 @@ function renderButtons(){
 }
 
 
-// The user clicks on a generated orange button, which generates 10 static, non-animated gif images from the GIPHY API and places them on the page. 
+// The user clicks on a button to generate 10 static,gif images from GIPHY API 
 $("#celeb-buttons").on("click", ".btn", function(){
   		var celebName = $(this).attr("data");
   		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + celebName + "&api_key=dc6zaTOxFJmzC&limit=10";
@@ -35,43 +34,46 @@ $("#celeb-buttons").on("click", ".btn", function(){
           	var results = response.data;
 
           	for (var i = 0; i < results.length; i++) {
-          		// a div is created to hold a gif of any topic
-	          	var celebDiv = $("<div>");
+          		
+                  var celebDiv = $("<div>");
+                  
 	 			
-	          	// Under every gif, display its rating (PG, G, so on).
+	          	// Display the rating of the gif under each image
 	 			var p = $("<p>");
 	 			p.text(results[i].rating);
-	 			var p = $("<p>").text("Rating: " + results[i].rating);
-
-	 			// add a CSS style to create colored borders around the gifs
+                 var p = $("<p>").text("Rating: " + results[i].rating);
+                
 	 			var topicImage = $("<img>");
-
-	 			// add states of animate and still which will be toggled 
+	 			
+	 			// Add still and animate states to the images
 	 			topicImage.attr("src", results[i].images.fixed_height_still.url);
 	 			topicImage.attr("data-still", results[i].images.fixed_height_still.url);
 	 			topicImage.attr("data-animate", results[i].images.fixed_height.url)
 	 			topicImage.attr("data-state", "still")
 	 			topicImage.addClass("gif");
 	 			
-	 			// image is appended to the div
+	 			// Appends the image to the div
 	 			celebDiv.append(topicImage);
-	 			// rating is appended to the div below the gif
-	 			celebDiv.append(p); 			
-	 			// new images will be placed at the beginning (top) of the containing gif area
-	 			$("#celeb-gifs").prepend(celebDiv);
+	 			// Appends the rating to the div
+                 celebDiv.append(p); 
+                 			
+                 //Prepends new gif images to the gif area
+                 
+                 $("#celeb-gifs").prepend(celebDiv);
+                 
  			}
   		})
   })
 
 
-// When the user clicks one of the still GIPHY images, and it animates. When the user clicks the gif again, it stops playing.
+// Functions that animates the images when the user clicks the image. When the user clicks the image again, it stops playing.
 $("#celeb-gifs").on("click", ".gif", function(event){
-	event.preventDefault();
+    event.preventDefault();
 	
 	// gets the current state of the clicked gif 
 	var state = $(this).attr("data-state");
 	
-	// according to the current state gifs toggle between animate and still 
+	// Toggles between still and animage depending on the current state of the image
 	if (state === "still") {
     $(this).attr("src", $(this).attr("data-animate"));
     $(this).attr("data-state", "animate");
@@ -79,18 +81,15 @@ $("#celeb-gifs").on("click", ".gif", function(event){
     $(this).attr("src", $(this).attr("data-still"));
     $(this).attr("data-state", "still");
   }
-
 })
-   
-
-// The form takes the value from the input box and adds it into the favCeleb  array. The  renderButtons function is called that takes each topic in the array remakes the buttons on the page.
+//Takes the user input and and pushes it into the favCeleb array. Function renderButtons is called to add the new topic (new celebrity) to the list of buttons
 
 
 $(".submit").on("click", function(event){
 	event.preventDefault();
 
 	console.log("submit");
-	// sets inputted value to newCeleb
+    //takes user input and sets value to newCeleb
 	newCeleb = $("#celeb-input").val();
 	// new topic is added to the favCeleb array 
 	favCeleb.push(newCeleb);
@@ -98,8 +97,6 @@ $(".submit").on("click", function(event){
 	// call the function that creates the new button
 	renderButtons();
 });
-
-
 
 renderButtons();
  
